@@ -1,0 +1,38 @@
+{% load static %}  <!-- Carga el sistema de archivos estáticos de Django -->
+
+<!DOCTYPE html>  <!-- Declara que este documento es HTML5 -->
+<html lang="es">  <!-- Especifica que el idioma del documento es español -->
+<head>
+    <meta charset="UTF-8">  <!-- Establece la codificación de caracteres a UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Hace que la página sea responsiva en dispositivos móviles -->
+    <title>{% block title %}Inicio de Sesión{% endblock %}</title>  <!-- Título de la página que se puede sobrescribir en plantillas hijas -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Enlaza la hoja de estilos CSS usando la ruta estática -->
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Bienvenido a la Aplicación{% endblock %}</h1>  <!-- Encabezado principal que se puede sobrescribir -->
+    </header>
+    
+    <main>
+        <section>
+            <h2>{% block section_title %}Inicia Sesión{% endblock %}</h2>  <!-- Título de la sección que se puede sobrescribir -->
+            <form method="post" action="{% url 'login' %}">  <!-- Formulario para el inicio de sesión, enviando datos mediante POST -->
+                {% csrf_token %}  <!-- Token de seguridad para prevenir ataques CSRF -->
+                <div>
+                    <label for="username">Nombre de usuario:</label>  <!-- Etiqueta para el campo de nombre de usuario -->
+                    <input type="text" id="username" name="username" required>  <!-- Campo de entrada para el nombre de usuario, obligatorio -->
+                </div>
+                <div>
+                    <label for="password">Contraseña:</label>  <!-- Etiqueta para el campo de contraseña -->
+                    <input type="password" id="password" name="password" required>  <!-- Campo de entrada para la contraseña, obligatorio -->
+                </div>
+                <button type="submit">Iniciar Sesión</button>  <!-- Botón para enviar el formulario -->
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>{% block footer %}© 2024 Tu Aplicación{% endblock %}</p>  <!-- Pie de página que se puede sobrescribir -->
+    </footer>
+</body>
+</html>
